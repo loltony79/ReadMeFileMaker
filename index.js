@@ -2,16 +2,20 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
-// TODO: Create an array of questions for user input
+// The file name that is being created is called log.md
 let fileName = "log.md";
 fs.writeFile(fileName, "", (err) =>
   err ? console.error(err) : console.log('Success!')
 );
 
+// TODO: Create an array of questions for user input
 const questions = ["Project title?", "Project description?", "Installation guide?", "Project usage?", "Contribution guide?", "Project test?", "License (Boost or Apache)?", "Github username?", "Email address?"];
 
 // TODO: Create a function to write README file
+
+// A function that takes in user input
 function writeToFile(fileName, data) {
+    // Prompts user to input the data
     inquirer
     .prompt([
         {
@@ -60,6 +64,7 @@ function writeToFile(fileName, data) {
             name: "email",
         },
     ])
+    // After the data is entered by the user, the data is being written on the log.md  
     .then((response) => 
         fs.writeFile(fileName, generateMarkdown(response), (err) =>
             err ? console.error(err) : console.log('Success!')
